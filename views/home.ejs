@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title%>
+    </title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    <!--Custom CSS file should be always at bottom in chain -->
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    
+    <h1 id="heading">
+        <i class="fa fa-address-card" aria-hidden="true"></i>
+       My Contact List
+    </h1> 
+    <div class="main-div">
+     
+    <ul>
+       <% for(let i of contact_list){%>
+    
+            <li>
+                <div class="contact-container">
+                    <span><%= i.name%>
+                    </span>
+                    <span>      <%= i.phoneNum%>
+                    </span>
+                    <!--
+                        params is a way by which we transfer info from user to server without using forms it is passed
+                        as a part of Url.
+                        we have two type of params
+                        1. Query Params
+                        2. String Params
+                         here we have used String Params 
+                    -->
+                    <a href="/delete-contact/<%= i.id%>">
+                        <i class="fa fa-window-close" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+               
+            </li>
+            <%}%>
+        
+    </ul>
+
+        <form action="/create_contact" method="POST">
+            <input type="text" name="name" placeholder="Enter name">
+            <input type="number" name="phoneNum" placeholder="Enter Phone number">
+            <button type="submit">Add Contact</button>
+        </form> 
+    </div>
+<script src="/js/home.js"></script>
+</body>
+</html>
